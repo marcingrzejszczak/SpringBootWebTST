@@ -1,76 +1,78 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>SpringBootWebTST</groupId>
-  <artifactId>SpringBootWebTST</artifactId>
-   <version>0.0.1-SNAPSHOT</version>
-      <packaging>jar</packaging>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>SpringBootWebTST</groupId>
+	<artifactId>SpringBootWebTST</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
-		<properties>
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<maven.compiler.source>1.8</maven.compiler.source> 
+		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 
-<!-- 
-spring-cloud.version
-Finchley.M9
-Edgware.SR3
-Dalston.SR3
- -->
- 		
-  		<spring-cloud.version>Finchley.M9</spring-cloud.version>
-<!-- 		<spring-boot-version>1.5.10.RELEASE</spring-boot-version> --> 
-  		<spring-boot-version>2.0.1.RELEASE</spring-boot-version>
-  		<start-class>mk.WebApp</start-class>
+		<!--
+		spring-cloud.version
+		Finchley.M9
+		Edgware.SR3
+		Dalston.SR3
+		 -->
+
+		<spring-cloud.version>Finchley.M9</spring-cloud.version>
+		<!-- 		<spring-boot-version>1.5.10.RELEASE</spring-boot-version> -->
+		<spring-boot-version>2.0.1.RELEASE</spring-boot-version>
+		<start-class>mk.WebApp</start-class>
 	</properties>
-	
-	  <build>
-    <sourceDirectory>src/main/java/</sourceDirectory>
-    <plugins>
-   	<plugin>
+
+	<build>
+		<sourceDirectory>src/main/java/</sourceDirectory>
+		<plugins>
+			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.7.0</version>
 				<configuration>
-				<includes>
-             <include>src/main/java/**/*.java</include>
-        
-        </includes>
+					<includes>
+						<include>src/main/java/**/*.java</include>
+
+					</includes>
 				</configuration>
 			</plugin>
 
-       <plugin>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-maven-plugin</artifactId>
-<!--       <version>{spring-boot-version}</version> -->
- <!--   <version>{spring-boot-version}</version> -->
-      <configuration>
-        <mainClass>${start-class}</mainClass>
-        <layout>ZIP</layout>
-      </configuration>
-      <executions>
-        <execution>
-          <goals>
-            <goal>repackage</goal>
-          </goals>
-        </execution>
-      </executions>
-    </plugin>
-    
- <!-- 
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.0.2</version>
-        <configuration>
-            <archive>
-                <manifest>
-                    <mainClass>${start-class}</mainClass>
-                </manifest>
-            </archive>
-        </configuration>
-    </plugin>
- -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!--       <version>{spring-boot-version}</version> -->
+				<!--   <version>{spring-boot-version}</version> -->
+				<configuration>
+					<mainClass>${start-class}</mainClass>
+					<layout>ZIP</layout>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!--
+			   <plugin>
+				   <groupId>org.apache.maven.plugins</groupId>
+				   <artifactId>maven-jar-plugin</artifactId>
+				   <version>3.0.2</version>
+				   <configuration>
+					   <archive>
+						   <manifest>
+							   <mainClass>${start-class}</mainClass>
+						   </manifest>
+					   </archive>
+				   </configuration>
+			   </plugin>
+			-->
 
 
 			<plugin>
@@ -87,17 +89,18 @@ Dalston.SR3
 						<configuration>
 							<target>
 
-									<copy file="${project.build.directory}/${project.artifactId}-${project.version}.jar" tofile="${project.basedir}/docker/${project.artifactId}-${project.version}.jar" />
-									<!-- 
-								<scp localFile="${project.basedir}/target/SpringBootWeb-0.0.1-SNAPSHOT.jar"
-									remoteToFile="marcin@tools.local:/home/marcin/SpringBootWeb/docker" verbose="true" password="1qaz2wsx"
-									trust="true">
-								</scp>
- -->
+								<copy file="${project.build.directory}/${project.artifactId}-${project.version}.jar"
+									  tofile="${project.basedir}/docker/${project.artifactId}-${project.version}.jar"/>
+								<!--
+							<scp localFile="${project.basedir}/target/SpringBootWeb-0.0.1-SNAPSHOT.jar"
+								remoteToFile="marcin@tools.local:/home/marcin/SpringBootWeb/docker" verbose="true" password="1qaz2wsx"
+								trust="true">
+							</scp>
+-->
 								<!-- calls deploy script -->
-	<!-- 							<sshexec host="tools.local" trust="yes" username="marcin"
-									password="1qaz2wsx" command="sed -i -e 's/\r//g' /home/marcin/SpringBootWeb/kubernetes/deploy.sh;sh /home/marcin/SpringBootWeb/kubernetes/deployxxx.sh" />
- -->
+								<!-- 							<sshexec host="tools.local" trust="yes" username="marcin"
+																password="1qaz2wsx" command="sed -i -e 's/\r//g' /home/marcin/SpringBootWeb/kubernetes/deploy.sh;sh /home/marcin/SpringBootWeb/kubernetes/deployxxx.sh" />
+							 -->
 							</target>
 						</configuration>
 					</execution>
@@ -117,88 +120,89 @@ Dalston.SR3
 					</dependency>
 				</dependencies>
 			</plugin>
-			
-			
-			
-			
+
+
 			<!-- =========================================== -->
 			<!-- antrun plugin end -->
 			<!-- =========================================== -->
 
-				
-    </plugins>
-  </build>
-   <dependencies>
+
+		</plugins>
+	</build>
+	<dependencies>
 
 
-<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-web</artifactId>
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 
-</dependency>
-
-
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-thymeleaf</artifactId>
-</dependency>
+		</dependency>
 
 
-	<dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-sleuth</artifactId>
-    </dependency>
-    <dependency>
-<groupId>org.springframework.cloud</groupId>
-<artifactId>spring-cloud-sleuth-zipkin</artifactId>
-</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
 
-<!-- 
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-stream-binder-kafka</artifactId>
-
-		</dependency>
- -->
-
-  </dependencies>
-  
-   
-    <dependencyManagement> 
-  <dependencies> 
-
-<dependency>
-			<!-- Import dependency management from Spring Boot -->
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-dependencies</artifactId>
-			<version>${spring-boot-version}</version>
-			<type>pom</type>
-			<scope>import</scope>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
 		</dependency>
 
+		<!--
+				<dependency>
+					<groupId>org.springframework.cloud</groupId>
+					<artifactId>spring-cloud-stream-binder-kafka</artifactId>
 
-     <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-dependencies</artifactId>
-            <version>${spring-cloud.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
+				</dependency>
+		 -->
 
-  </dependencies> 
-</dependencyManagement> 
-  
-  
-  <repositories>
-    <repository>
-        <id>spring-milestones</id>
-        <name>Spring Milestones</name>
-        <url>https://repo.spring.io/libs-milestone</url>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
-    </repository>
-</repositories>
-  
+	</dependencies>
+
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<!-- Import dependency management from Spring Boot -->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot-version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+
+	<repositories>
+		<repository>
+			<id>spring-snapshots</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/libs-snapshot</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/libs-milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 </project>
